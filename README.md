@@ -196,5 +196,8 @@ AgroMitra demonstrates how machine learning, external APIs, recommendation syste
 Rashi Gupta
 
 ## License
-MIT
+
+Copyright © 2026 Rashi Gupta. All Rights Reserved.
+
+This repository is made publicly available for portfolio and educational viewing purposes only. No permission is granted to copy, modify, redistribute, or use the source code, datasets, or documentation without prior written permission from the author.
 
