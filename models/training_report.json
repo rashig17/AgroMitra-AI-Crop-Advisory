@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-11-16T00:07:10.406986",
+  "model": "models\\env_model.joblib",
+  "features": "models\\features.joblib",
+  "crop_names": "models\\crop_names.joblib",
+  "validation": null,
+  "test": {
+    "mae": 5.760390814357728,
+    "rmse": 7.1428478227813095,
+    "r2": 0.841606762302473,
+    "accuracy": 85.56818181818183
+  },
+  "epochs": 1,
+  "accuracy_tolerance": 10.0
+}

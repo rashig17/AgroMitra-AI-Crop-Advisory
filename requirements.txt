@@ -1,0 +1,11 @@
+flask
+flask-cors
+gunicorn
+requests
+urllib3
+numpy
+pandas
+scikit-learn>=1.2
+xgboost
+joblib
+googletrans==4.0.0

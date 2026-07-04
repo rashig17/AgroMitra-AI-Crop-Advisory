@@ -1,0 +1,1341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Farm Tycoon — Smart Crop Advisory</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg-light: #f3faf6;
+      --bg-dark: #06121a;
+      --card-light: #ffffff;
+      --card-dark: linear-gradient(180deg,#0d1a23 0%,#132d3a 100%);
+      --text-light: #073227;
+      --text-dark: #dff3ea;
+      --muted-light: #6b7280;
+      --muted-dark: #93b9ab;
+      --accent: #047857;
+      --accent-strong: #0f7a5c;
+      --translate-gradient-from: #00b4e6;
+      --translate-gradient-to: #2dd4bf;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg-light);
+      color: var(--text-light);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Poppins", Arial;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    html.dark body,
+    body.dark {
+      background: var(--bg-dark) !important;
+      color: var(--text-dark) !important;
+    }
+
+    .card-bg { background: var(--card-light); color: var(--text-light); }
+    html.dark .card-bg { background: var(--card-dark); color: var(--text-dark); }
+
+    .text-muted { color: var(--muted-light); }
+    html.dark .text-muted { color: var(--muted-dark); }
+
+    .card-shadow { box-shadow: 0 10px 28px rgba(6,95,70,0.06); }
+
+    .pill { background: rgba(34,197,94,0.08); color: var(--accent); font-weight:700; padding:0.18rem .55rem; border-radius:999px; }
+    html.dark .pill { background: rgba(39,174,96,0.18); color: #bde9d4; }
+
+    .score-circle { width:72px; height:72px; border-radius:14px; background: linear-gradient(135deg,#ecfdf7,#d1fae5); display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--accent); font-size:1.4rem; }
+    html.dark .score-circle { background: linear-gradient(135deg,#083a2d,#0b2f2a); color:#a7f0d0; }
+
+    .health-good { color: #047857; }
+    .health-attention { color: #b45309; }
+    .health-risk { color: #b91c1c; }
+    html.dark .health-good { color: #86efac !important; }
+    html.dark .health-attention { color: #facc15 !important; }
+    html.dark .health-risk { color: #f87171 !important; }
+
+    .score-circle.attention { background: linear-gradient(135deg,#fff7ed,#fde68a); color:#b45309; }
+    .score-circle.risk { background: linear-gradient(135deg,#fee2e2,#fecaca); color:#b91c1c; }
+    html.dark .score-circle.attention { background: linear-gradient(135deg,#7a4c09,#b45309); color:#fde68a; }
+    html.dark .score-circle.risk { background: linear-gradient(135deg,#7f1d1d,#991b1b); color:#fecaca; }
+
+    /* Translate FAB styles */
+    .translate-fab { width:64px; height:64px; border-radius:999px; display:flex; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg,var(--translate-gradient-from),var(--translate-gradient-to)); color:white; box-shadow:0 10px 30px rgba(6,95,70,0.16); cursor:pointer; }
+    .translate-fab:hover { transform: translateY(-4px) scale(1.03); transition: transform .18s ease; }
+
+    .hover-light:hover { transform: translateY(-3px); transition: transform .18s ease; }
+
+    /* translate panel animation */
+    .translate-panel { transform-origin: 100% 100%; transition: transform .14s ease, opacity .14s ease; opacity: 0; pointer-events: none; visibility: hidden; }
+    .translate-panel.show { transform: translateY(0); opacity: 1; pointer-events: auto; visibility: visible; }
+    .translate-panel.hide { transform: translateY(6px); opacity: 0; pointer-events: none; visibility: hidden; }
+
+    /* small responsive fixes */
+    @media (max-width: 1024px){
+      .lg-sticky { position: static !important; top: auto !important; }
+    }
+
+    /* subtle table row hover for dark/light */
+    .row-hover:hover { background: rgba(6,95,70,0.02); }
+    html.dark .row-hover:hover { background: rgba(39,174,96,0.04); }
+
+    /* ensure inputs readable in dark */
+    input::-webkit-input-placeholder { color: #9ca3af; }
+    html.dark input::placeholder { color: #94a9a0; }
+    html.dark input:not([type="hidden"]),
+    html.dark textarea,
+    html.dark select {
+      background: #152635;
+      border-color: #264254;
+      color: var(--text-dark);
+    }
+    html.dark button {
+      color: inherit;
+    }
+
+    html.dark .text-neutral-700,
+    html.dark .text-neutral-600,
+    html.dark .text-gray-600,
+    html.dark .text-gray-700 { color: var(--text-dark); }
+
+    html.dark .text-neutral-500,
+    html.dark .text-gray-500 { color: #9cc8d4; }
+
+    html.dark .text-green-700,
+    html.dark .text-green-600 { color: #8ef0c0 !important; }
+
+    html.dark .text-amber-600 { color: #f4d27e !important; }
+
+    html.dark .bg-green-50 { background: rgba(62,181,141,0.18); }
+    html.dark .bg-white { background: var(--card-dark); }
+
+    html.dark #top-crop-name,
+    html.dark #top-crop-sub,
+    html.dark #other-crops .font-semibold,
+    html.dark #other-count { color: var(--text-dark) !important; }
+
+    html.dark #top-recommendation.card-bg {
+      background: linear-gradient(180deg,#0f2f3a 0%,#175263 100%);
+      border: 1px solid rgba(82,196,167,0.22);
+    }
+    html.dark #top-recommendation .text-muted { color: #9fc9c1; }
+    html.dark #top-recommendation .pill { background: rgba(62,181,141,0.22); color: #c6f8e6; }
+
+    .score-badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #27ae60, #1f8f4f);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+      box-shadow: 0 6px 16px rgba(31,143,79,0.25);
+    }
+    html.dark .score-badge {
+      background: linear-gradient(135deg,#54d6a1,#2c8f70);
+      box-shadow: 0 6px 20px rgba(12,84,76,0.35);
+    }
+
+    .impact-label {
+      display:inline-block;
+      padding:0.15rem 0.5rem;
+      border-radius:999px;
+      font-weight:600;
+      font-size:0.75rem;
+      letter-spacing:0.01em;
+    }
+    .label-excellent { background:#dcfce7; color:#047857; }
+    .label-good { background:#e0f2fe; color:#0369a1; }
+    .label-fair { background:#fef3c7; color:#b45309; }
+    .label-bad { background:#fee2e2; color:#b91c1c; }
+    html.dark .label-excellent { background:rgba(34,197,94,0.18); color:#86efac; }
+    html.dark .label-good { background:rgba(59,130,246,0.18); color:#93c5fd; }
+    html.dark .label-fair { background:rgba(251,191,36,0.18); color:#facc15; }
+    html.dark .label-bad { background:rgba(248,113,113,0.2); color:#fca5a5; }
+
+    /* Accessible focus outline */
+    :focus { outline: 2px solid rgba(4,120,87,0.14); outline-offset: 2px; }
+
+    /* utility to hide/show */
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <div class="max-w-6xl mx-auto px-4 py-6">
+    <!-- Top header -->
+    <header class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-lg bg-green-600 text-white flex items-center justify-center font-bold text-lg shadow">FT</div>
+        <div>
+          <div class="text-lg font-semibold">Farm Tycoon</div>
+          <div class="text-sm text-muted">Smart Crop Advisory</div>
+        </div>
+        <button id="theme-toggle"
+          class="ml-4 inline-flex items-center gap-2 card-bg border dark:border-gray-700 rounded-full px-3 py-1 text-sm shadow-sm"
+          type="button" aria-pressed="false" title="Toggle theme">
+
+          <svg id="sun-icon" class="w-5 h-5 text-amber-400"
+            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364 6.364-1.414-1.414M7.05 7.05 5.636 5.636m12.728 0-1.414 1.414M7.05 16.95 5.636 18.364M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" />
+          </svg>
+
+          <svg id="moon-icon" class="w-5 h-5 text-slate-300 hidden"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M17.293 13.293A8 8 0 116.707 2.707a7 7 0 0010.586 10.586z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="text-sm text-muted">Farmer-friendly · Simple view</div>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-6">
+            <!-- LEFT SIDEBAR -->
+      <aside class="card-bg rounded-xl p-5 card-shadow lg:sticky lg:top-6 lg-sticky">
+
+        <!-- Location -->
+        <div class="text-sm text-muted">Detected Location</div>
+        <div id="location-display" class="text-green-700 dark:text-green-300 font-semibold mt-1">Detecting...</div>
+
+        <!-- Manual Location -->
+        <div id="manual-location" class="mt-3 p-3 rounded-md bg-yellow-50 dark:bg-yellow-900/30 hidden">
+          <div class="font-semibold mb-2">Enter location manually</div>
+          <input id="manual-state" class="w-full p-2 rounded border dark:border-gray-700 dark:bg-[#0d1a23] dark:text-gray-200" placeholder="State (e.g., Maharashtra)" />
+          <input id="manual-city" class="w-full p-2 rounded border mt-2 dark:border-gray-700 dark:bg-[#0d1a23] dark:text-gray-200" placeholder="City (e.g., Pune)" />
+          <div class="flex gap-2 mt-3">
+            <button id="use-manual-location" class="flex-1 bg-green-600 text-white py-2 rounded">Use Location</button>
+            <button id="clear-location" class="flex-1 border border-green-600 text-green-700 dark:border-green-400 dark:text-green-300 py-2 rounded">Clear</button>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <form id="advisory-form" class="mt-5 flex flex-col gap-3">
+
+          <!-- Past Crop -->
+          <label class="font-semibold text-sm">Past Crop (optional)</label>
+          <input id="past-crop" type="text" list="crop-list" autocomplete="off"
+            class="w-full p-2 rounded border bg-white dark:bg-[#0d1a23] dark:border-gray-700 dark:text-gray-200"
+            placeholder="Select or type crop name" />
+
+          <!-- Date -->
+          <label class="font-semibold text-sm">Data Date (optional)</label>
+          <input id="date" name="date" type="date"
+            class="p-2 rounded border dark:border-gray-700 dark:bg-[#0d1a23] dark:text-gray-200" />
+
+          <!-- Submit -->
+          <div class="mt-3">
+            <button id="submit-button"
+              class="w-full bg-green-600 text-white py-3 rounded-lg font-bold disabled:opacity-60"
+              disabled>Get Recommendation</button>
+            <div id="error-message" class="text-sm text-red-600 font-semibold mt-2"></div>
+          </div>
+
+          <!-- Soil + Weather cards under form -->
+          <div class="mt-4 space-y-3">
+
+            <!-- Soil Card -->
+            <div id="soil-card" class="card-bg rounded-lg p-4 card-shadow hidden hover-light">
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="text-sm font-semibold text-green-700 dark:text-green-300">Soil Analysis</div>
+                  <div id="soil-type" class="font-bold text-lg mt-1">Sandy Clay Loam</div>
+                  <div class="text-xs text-muted mt-1">
+                    pH: <span id="soil-ph">6.5</span> • OM: <span id="soil-om">2.8%</span>
+                  </div>
+
+                  <div class="flex gap-2 mt-3">
+                    <div class="px-3 py-1 bg-green-50 dark:bg-green-900/20 rounded-full text-green-700 dark:text-green-300 text-xs font-semibold">
+                      Clay: <span id="clay-percent">32.5</span>
+                    </div>
+                    <div class="px-3 py-1 bg-green-50 dark:bg-green-900/20 rounded-full text-green-700 dark:text-green-300 text-xs font-semibold">
+                      Sand: <span id="sand-percent">47.5</span>
+                    </div>
+                    <div class="px-3 py-1 bg-green-50 dark:bg-green-900/20 rounded-full text-green-700 dark:text-green-300 text-xs font-semibold">
+                      Silt: <span id="silt-percent">20</span>
+                    </div>
+                  </div>
+
+                  <div id="soil-sources" class="text-xs text-muted mt-2">Sources: SoilGrids</div>
+                </div>
+
+                <div class="text-center">
+                  <div id="soil-health-indicator" class="score-circle">—</div>
+                  <div class="text-xs text-muted mt-2">
+                    Soil health: <span id="soil-health-label" class="font-semibold health-good">Good</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Weather Card -->
+            <div id="weather-card" class="card-bg rounded-lg p-4 card-shadow hidden hover-light">
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="text-sm font-semibold text-green-700 dark:text-green-300">Weather Snapshot</div>
+                  <div class="font-bold text-lg mt-1 text-green-700 dark:text-green-300">
+                    <span id="temperature">22</span> °C
+                  </div>
+                  <div class="text-xs text-muted mt-1">
+                    Rain (7d): <span id="rainfall">30</span> mm • Season:
+                    <span id="season">Rabi</span>
+                  </div>
+                  <div id="weather-sources" class="text-xs text-muted mt-2">
+                    Sources: OpenWeatherMap
+                  </div>
+                </div>
+
+                <div class="text-right">
+                  <div class="px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-300 font-semibold text-sm">
+                    No major anomalies
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Simulation Card -->
+            <div id="simulation-card" class="card-bg rounded-lg p-4 card-shadow hidden hover-light">
+              <div class="text-sm font-semibold text-green-700 dark:text-green-300 mb-3">🎛️ Simulate Conditions</div>
+              
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between text-xs text-muted mb-1">
+                    <span>Temperature</span>
+                    <span id="temp-val" class="font-semibold text-green-700 dark:text-green-300">25°C</span>
+                  </div>
+                  <input type="range" id="tempSlider" min="10" max="50" step="0.5" value="25"
+                    class="w-full h-2 bg-green-200 rounded-lg appearance-none cursor-pointer dark:bg-green-900/40 accent-green-600">
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs text-muted mb-1">
+                    <span>Rainfall</span>
+                    <span id="rain-val" class="font-semibold text-green-700 dark:text-green-300">500mm</span>
+                  </div>
+                  <input type="range" id="rainSlider" min="0" max="1000" step="10" value="500"
+                    class="w-full h-2 bg-green-200 rounded-lg appearance-none cursor-pointer dark:bg-green-900/40 accent-green-600">
+                </div>
+
+                <div id="simLabel" class="hidden text-xs font-bold text-amber-600 dark:text-amber-300 text-center mt-2">
+                  ⚠️ Simulated Conditions Active
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="space-y-4">
+
+        <!-- LOADING (shows during API call) -->
+        <div id="loading" class="card-bg rounded-xl p-6 card-shadow hidden">
+          <div class="flex items-center gap-4">
+            <div class="h-12 w-12 rounded-full border-4 border-green-200 border-t-green-600 animate-spin"></div>
+            <div>
+              <div id="loading-title" class="font-semibold text-green-700 dark:text-green-300">
+                Analyzing your farm data...
+              </div>
+              <div id="loading-msg" class="text-sm text-muted mt-0.5">
+                Combining soil & weather, applying rules.
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- TOP RECOMMENDATION -->
+        <section id="top-recommendation"
+          class="card-bg rounded-2xl p-6 card-shadow hidden hover-light">
+
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+            <!-- Left side: crop picture & name -->
+            <div class="flex items-center gap-4">
+              <div class="w-20 h-20 rounded-lg bg-green-50 dark:bg-green-900/20 flex items-center justify-center">
+                <div id="top-crop-emoji" class="text-2xl">🌾</div>
+              </div>
+
+              <div>
+                <div id="top-crop-name"
+                  class="text-2xl font-extrabold text-[#073227] dark:text-green-200">
+                  Lucerne
+                </div>
+                <div class="text-sm text-muted mt-1">
+                  <span id="top-crop-sub">Crop: Lucerne</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right side: score & quick indicators -->
+<div class="flex items-center gap-6">
+
+              <div class="text-center">
+                <div class="text-sm text-muted">Suitability</div>
+                <div id="top-score"
+                  class="text-3xl font-extrabold text-green-700 dark:text-green-300">
+                  54
+                </div>
+                <div id="test-flag-display" class="pill bg-blue-500 text-white text-xs mt-1 hidden">NEW_SYSTEM_ACTIVE</div>
+              </div>
+
+              <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                  <div class="pill">Soil ✔</div>
+                  <div class="text-sm text-muted">Matches</div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="pill">Weather ✔</div>
+                  <div class="text-sm text-muted">Good</div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="pill">Risk: Low</div>
+                  <div class="text-sm text-muted">Rotation ok</div>
+                </div>
+              </div>
+            </div>
+
+            </div>
+
+          <!-- WHY THIS CROP — collapsible -->
+          <div class="mt-4">
+            <button id="why-toggle"
+              class="text-sm text-green-700 dark:text-green-300 font-semibold">
+              Why this crop? ▲
+            </button>
+
+            <div id="why-body"
+              class="mt-3 text-sm leading-6 text-neutral-700 dark:text-gray-200 space-y-2"></div>
+          </div>
+
+          <!-- ACTION PLAN -->
+          <div id="action-plan-section" class="mt-6 pt-4 border-t border-green-100 dark:border-green-800/30 hidden">
+            <div class="font-semibold text-sm mb-3 text-green-700 dark:text-green-300">✅ Action Plan</div>
+            <ul id="action-plan-list" class="text-sm space-y-1 text-neutral-700 dark:text-gray-200"></ul>
+          </div>
+
+        </section>
+
+        <!-- REJECTED CROPS WARNING -->
+        <section id="rejected-crops-section" class="card-bg rounded-xl p-4 card-shadow hidden hover-light mt-4">
+          <div class="font-semibold text-sm mb-2 text-orange-700 dark:text-orange-300 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Rejected Crops (low scores)
+          </div>
+          <div id="rejected-crops-list" class="text-sm space-y-1 text-neutral-700 dark:text-gray-200"></div>
+        </section>
+
+
+
+        <!-- ROTATION ADVICE (COLLAPSIBLE DROPDOWN) -->
+        <section id="rotation-suggestions"
+          class="card-bg rounded-lg p-4 card-shadow hidden hover-light">
+
+          <!-- Dropdown Header -->
+          <button id="rotation-toggle"
+            class="w-full flex items-center justify-between font-semibold text-green-700 dark:text-green-300">
+            <span>Rotation Advice</span>
+            <span id="rotation-toggle-icon" class="text-sm text-muted">▼</span>
+          </button>
+
+          <!-- Dropdown Panel -->
+          <div id="rotation-panel" class="mt-3 hidden">
+            <ul id="rotation-list"
+              class="list-disc pl-5 text-neutral-700 dark:text-gray-200"></ul>
+          </div>
+        </section>
+
+
+
+        <!-- OTHER SUITABLE CROPS -->
+        <section id="other-crops"
+          class="card-bg rounded-lg p-4 card-shadow hidden hover-light">
+
+          <div class="flex items-center justify-between">
+            <div class="font-semibold text-green-700 dark:text-green-300">
+              Other Suitable Crops
+            </div>
+            <div id="other-count" class="text-sm text-muted">0 found</div>
+          </div>
+
+          <ul id="alt-list"
+            class="mt-3 list-disc pl-5 text-neutral-700 dark:text-gray-200"></ul>
+        </section>
+
+
+
+        <!-- RECOMMENDED CROPS TABLE (COLLAPSIBLE) -->
+        <section id="recommended-collapse"
+          class="card-bg rounded-lg card-shadow hidden hover-light">
+
+          <!-- Header -->
+          <button id="table-toggle"
+            class="w-full text-left p-4 flex items-center justify-between font-semibold text-green-700 dark:text-green-300">
+            <span>Recommended Crops (details)</span>
+            <span id="table-toggle-indicator" class="text-sm text-muted">▼</span>
+          </button>
+
+          <!-- Panel -->
+          <div id="table-panel" class="px-4 pb-4 hidden">
+
+            <div class="w-full overflow-auto">
+              <table class="w-full min-w-[760px] border-collapse text-sm dark:text-gray-200">
+                <thead class="text-xs text-muted uppercase">
+                  <tr>
+                    <th class="py-2 text-left pr-4">Crop</th>
+                    <th class="py-2 text-left pr-4">Season</th>
+                    <th class="py-2 text-left pr-4">Score</th>
+                    <th class="py-2 text-left pr-4">Soil Impact</th>
+                    <th class="py-2 text-left pr-4">Temp (°C)</th>
+                    <th class="py-2 text-left pr-4">Rain (mm)</th>
+                  </tr>
+                </thead>
+
+                <tbody id="crops-table-body">
+                  <!-- filled dynamically -->
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+      </main>
+    </div>
+  </div>
+  <datalist id="crop-list"></datalist>
+
+  <!-- Floating Translate Button -->
+  <div class="fixed right-5 bottom-5 z-50 flex items-end gap-3">
+    <div id="translate-panel"
+      class="translate-panel hide hidden card-bg rounded-md p-3 shadow card-shadow min-w-[220px]">
+      <div id="google_translate_element"></div>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <button id="globe-btn" class="translate-fab" title="Translate">
+        <span class="text-2xl">🌐</span>
+      </button>
+      <div class="mt-2 bg-white/80 dark:bg-gray-800/80 text-xs sm:text-sm rounded-full px-3 py-1 shadow">
+        Translation
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Translate Script -->
+  <script>
+    function googleTranslateElementInit(){
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages:
+          'en,hi,mr,bn,ta,te,gu,kn,ml',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+  <!-- MAIN APP LOGIC -->
+  <script>
+    /* ------------------------------------------------------------
+       1. LOAD CROPS.JSON FROM /data/crops.json
+       ------------------------------------------------------------ */
+    let CROP_DATABASE = [];
+
+    const pastCropInput = document.getElementById("past-crop");
+    const cropList = document.getElementById("crop-list");
+
+    async function loadCropDatabase() {
+      try {
+        const res = await fetch("/data/crops.json");
+        if (!res.ok) {
+          throw new Error(`Status ${res.status}`);
+        }
+        CROP_DATABASE = await res.json();
+        populateCropOptions();
+      } catch (err) {
+        console.error("Failed to load crops.json", err);
+      }
+    }
+    loadCropDatabase();
+
+    function populateCropOptions() {
+      if (!cropList) return;
+      const uniqueCrops = Array.from(new Set(
+        (CROP_DATABASE || []).map(c => c?.Crop).filter(Boolean)
+      )).sort((a,b)=> a.localeCompare(b));
+
+      if (!uniqueCrops.length) return;
+
+      cropList.innerHTML = "";
+      uniqueCrops.forEach(name => {
+        const option = document.createElement("option");
+        option.value = name;
+        cropList.appendChild(option);
+      });
+    }
+
+
+
+    function renderStructuredExplanation(container, explanation) {
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (!explanation || !explanation.trim()) {
+        const fallback = document.createElement('div');
+        fallback.textContent = 'No detailed explanation available.';
+        container.appendChild(fallback);
+        return;
+      }
+
+      const lines = explanation.split(/\r?\n/);
+      lines.forEach(line => {
+        const trimmed = line.trim();
+        if (!trimmed) {
+          const spacer = document.createElement('div');
+          spacer.className = 'h-2';
+          container.appendChild(spacer);
+          return;
+        }
+
+        if (trimmed === '---') {
+          const hr = document.createElement('hr');
+          hr.className = 'my-2 border-t border-green-100 dark:border-green-800/40';
+          container.appendChild(hr);
+          return;
+        }
+
+        const row = document.createElement('div');
+        row.textContent = trimmed;
+        container.appendChild(row);
+      });
+    }
+
+    function renderExplanation(rec) {
+      const explanation = Array.isArray(rec?.explanation)
+        ? rec.explanation
+        : (rec?.explanation ? [rec.explanation] : []);
+      const actions = Array.isArray(rec?.action_plan)
+        ? rec.action_plan
+        : (rec?.action_plan ? [rec.action_plan] : []);
+      const risks = Array.isArray(rec?.risks)
+        ? rec.risks
+        : (rec?.risks ? [rec.risks] : []);
+
+      const renderList = items => items.length
+        ? items.map(item => `<li>${item}</li>`).join("")
+        : "<li>No details available.</li>";
+
+      return `
+        <div>
+          <h4>🌱 Why this crop?</h4>
+          <ul class="list-disc pl-5">
+            ${renderList(explanation)}
+          </ul>
+
+          <h4 class="mt-3">📋 What should you do?</h4>
+          <ul class="list-disc pl-5">
+            ${renderList(actions)}
+          </ul>
+
+          <h4 class="mt-3">⚠️ Risks</h4>
+          <ul class="list-disc pl-5">
+            ${renderList(risks)}
+          </ul>
+        </div>
+      `;
+    }
+
+
+
+    /* ------------------------------------------------------------
+       2. LOCATION HANDLING
+       ------------------------------------------------------------ */
+    let userLat=null, userLon=null, userCity=null, userState=null;
+    const locationDisplay = document.getElementById('location-display');
+    const manualBox = document.getElementById('manual-location');
+    const submitBtn = document.getElementById('submit-button');
+    const errorEl = document.getElementById('error-message');
+
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(pos=>{
+        userLat = pos.coords.latitude;
+        userLon = pos.coords.longitude;
+
+        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${userLat}&lon=${userLon}&format=json`)
+          .then(r=>r.json())
+          .then(d=>{
+            userCity = d.address.city ||
+                       d.address.town ||
+                       d.address.village ||
+                       d.address.county || '';
+            userState = d.address.state || d.address.region || '';
+
+            locationDisplay.textContent =
+              (userCity?userCity+', ':'') + (userState||'');
+
+            submitBtn.disabled=false;
+          })
+          .catch(()=>{
+            locationDisplay.textContent =
+              'Location detected — city lookup failed';
+            manualBox.classList.remove('hidden');
+            submitBtn.disabled=false;
+          });
+
+      }, err=>{
+        locationDisplay.textContent =
+          'Location denied or unavailable';
+        manualBox.classList.remove('hidden');
+        submitBtn.disabled=false;
+
+      }, {timeout:8000, maximumAge:600000});
+    }
+
+
+
+    document.getElementById('use-manual-location').onclick = ()=>{
+      const s = document.getElementById('manual-state').value.trim();
+      const c = document.getElementById('manual-city').value.trim();
+      if(!s || !c) return alert("Fill both State and City");
+
+      userState=s; userCity=c; userLat=null; userLon=null;
+
+      locationDisplay.textContent = `${c}, ${s} (Manual)`;
+      manualBox.classList.add('hidden');
+      submitBtn.disabled=false;
+    };
+
+    document.getElementById('clear-location').onclick = ()=>{
+      document.getElementById('manual-state').value='';
+      document.getElementById('manual-city').value='';
+    };
+
+    /* ------------------------------------------------------------
+       4. THEME TOGGLE
+       ------------------------------------------------------------ */
+    const themeToggle = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+
+    if (themeToggle) {
+      themeToggle.onclick = ()=>{
+        const html = document.documentElement;
+        const dark = html.classList.toggle('dark');
+        document.body.classList.toggle('dark', dark);
+
+        if (sunIcon) sunIcon.classList.toggle('hidden', dark);
+        if (moonIcon) moonIcon.classList.toggle('hidden', !dark);
+
+        localStorage.setItem('ft_dark', dark?'1':'0');
+      };
+
+      const storedTheme = localStorage.getItem('ft_dark');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if(storedTheme === '1' || (storedTheme === null && prefersDark)){
+        document.documentElement.classList.add('dark');
+        document.body.classList.add('dark');
+        if (sunIcon) sunIcon.classList.add('hidden');
+        if (moonIcon) moonIcon.classList.remove('hidden');
+      } else if (storedTheme === '0') {
+        document.documentElement.classList.remove('dark');
+        document.body.classList.remove('dark');
+        if (sunIcon) sunIcon.classList.remove('hidden');
+        if (moonIcon) moonIcon.classList.add('hidden');
+      }
+    }
+
+
+
+    /* ------------------------------------------------------------
+       5. TRANSLATE FAB
+       ------------------------------------------------------------ */
+    const globeBtn = document.getElementById('globe-btn');
+    const translatePanel = document.getElementById('translate-panel');
+    let translateHideTimer = null;
+
+    function openTranslatePanel(){
+      if(!translatePanel) return;
+      clearTimeout(translateHideTimer);
+      translatePanel.classList.remove('hidden');
+      translatePanel.classList.remove('hide');
+      requestAnimationFrame(()=>{
+        translatePanel.classList.add('show');
+      });
+    }
+
+    function closeTranslatePanel(){
+      if(!translatePanel) return;
+      if(!translatePanel.classList.contains('show')){
+        translatePanel.classList.add('hide');
+        translatePanel.classList.add('hidden');
+        return;
+      }
+      translatePanel.classList.remove('show');
+      translatePanel.classList.add('hide');
+      clearTimeout(translateHideTimer);
+      translateHideTimer = setTimeout(()=>{
+        translatePanel.classList.add('hidden');
+      }, 160);
+    }
+
+    if(globeBtn && translatePanel){
+      globeBtn.addEventListener('click', e=>{
+        e.stopPropagation();
+        const isOpen = translatePanel.classList.contains('show');
+        if(isOpen){
+          closeTranslatePanel();
+        }else{
+          openTranslatePanel();
+        }
+      });
+
+      document.addEventListener('click', e=>{
+        if(!translatePanel.contains(e.target) && !globeBtn.contains(e.target)){
+          closeTranslatePanel();
+        }
+      });
+    }
+
+
+
+    /* ------------------------------------------------------------
+       6. HELPERS
+       ------------------------------------------------------------ */
+    const show = id => document.getElementById(id).classList.remove('hidden');
+    const hide = id => document.getElementById(id).classList.add('hidden');
+
+    function updateRotationVisibility() {
+      // rotation should appear only after API response
+    }
+
+    function applySoilHealthStyles(status) {
+      const circle = document.getElementById('soil-health-indicator');
+      const label = document.getElementById('soil-health-label');
+      if(!circle || !label) return;
+
+      circle.classList.remove('attention', 'risk');
+      label.classList.remove('health-good', 'health-attention', 'health-risk');
+
+      const normalized = (status || '').toLowerCase();
+      if(normalized.includes('healthy')){
+        label.classList.add('health-good');
+      }else if(normalized.includes('attention') || normalized.includes('caution')){
+        label.classList.add('health-attention');
+        circle.classList.add('attention');
+      }else if(normalized.includes('risk')){
+        label.classList.add('health-risk');
+        circle.classList.add('risk');
+      }else{
+        label.classList.add('health-attention');
+        circle.classList.add('attention');
+      }
+    }
+
+    function soilImpactFromCrop(crop) {
+      if (!crop || typeof crop !== 'object') return 0;
+      let impact = 0;
+
+      if (crop.Legume === true || crop.legume === true) impact += 40;
+      if (crop.Improves_OM === true || crop.improves_om === true) impact += 20;
+      if (crop.Deep_Roots === true || crop.deep_roots === true) impact += 10;
+      if (crop.PestBreak === true || crop.pestbreak === true) impact += 10;
+
+      if (crop.Heavy_Nutrient_Depletion === true || crop.heavy_nutrient_depletion === true) impact -= 30;
+      if (crop.Reduces_OM === true || crop.reduces_om === true) impact -= 20;
+      if (crop.PestProne === true || crop.pestprone === true) impact -= 10;
+      if (crop.Compaction === true || crop.compaction === true) impact -= 10;
+
+      return impact;
+    }
+
+    function soilImpactLabel(score) {
+      if (score >= 40) return { label: 'Excellent', cls: 'label-excellent' };
+      if (score >= 20) return { label: 'Good', cls: 'label-good' };
+      if (score >= 0) return { label: 'Fair', cls: 'label-fair' };
+      return { label: 'Poor', cls: 'label-bad' };
+    }
+
+
+
+    /* ------------------------------------------------------------
+       7. ROTATION COLLAPSIBLE DROPDOWN
+       ------------------------------------------------------------ */
+    const rotToggle = document.getElementById('rotation-toggle');
+    const rotPanel  = document.getElementById('rotation-panel');
+    const rotIcon   = document.getElementById('rotation-toggle-icon');
+
+    rotToggle.onclick = ()=>{
+      const hidden = rotPanel.classList.contains('hidden');
+      rotPanel.classList.toggle('hidden');
+      rotIcon.textContent = hidden ? '▲' : '▼';
+    };
+
+    /* IMPORTANT:
+       Rotation is now controlled *ONLY AFTER* the API response.
+       (NO auto-show when typing past crop)
+    */
+
+
+
+    /* ------------------------------------------------------------
+       8. TABLE COLLAPSIBLE
+       ------------------------------------------------------------ */
+    document.getElementById('table-toggle').onclick = ()=>{
+      const p = document.getElementById('table-panel');
+      const ic = document.getElementById('table-toggle-indicator');
+      const hidden = p.classList.contains('hidden');
+
+      p.classList.toggle('hidden');
+      ic.textContent = hidden?'▲':'▼';
+    };
+
+
+
+    /* ------------------------------------------------------------
+       9. WHY DROPDOWN
+       ------------------------------------------------------------ */
+    const whyToggle = document.getElementById('why-toggle');
+    const whyBody   = document.getElementById('why-body');
+
+    whyToggle.onclick = ()=>{
+      const hidden = whyBody.classList.contains('hidden');
+      whyBody.classList.toggle('hidden');
+      whyToggle.textContent = hidden ?
+        'Why this crop? ▲' : 'Why this crop? ▼';
+    };
+
+
+
+    /* ------------------------------------------------------------
+       10. LOADING ANIMATION
+       ------------------------------------------------------------ */
+    const loadingMsgs=[
+      'Analyzing soil maps...',
+      'Querying weather sources...',
+      'Combining data sources...',
+      'Applying crop rules...'
+    ];
+    let loadingIndex=0;
+    let loadingInterval=null;
+
+    function startLoading(){
+      show('loading');
+      loadingIndex=0;
+      document.getElementById('loading-msg').textContent =
+        loadingMsgs[loadingIndex];
+
+      loadingInterval=setInterval(()=>{
+        loadingIndex=(loadingIndex+1)%loadingMsgs.length;
+        document.getElementById('loading-msg').textContent =
+          loadingMsgs[loadingIndex];
+      },1300);
+    }
+
+    function stopLoading(){
+      clearInterval(loadingInterval);
+      hide('loading');
+    }
+
+
+
+    /* ------------------------------------------------------------
+       11. UPDATE UI (reusable for both form submit & simulation)
+       ------------------------------------------------------------ */
+    function updateUI(data, pastCrop) {
+      /* ---------------- SOIL ---------------- */
+      const soil = data.soil_data || {};
+      document.getElementById('soil-type').textContent =
+        soil.soil_type || 'Loam';
+      document.getElementById('soil-ph').textContent =
+        soil.ph ?? '6.5';
+      document.getElementById('soil-om').textContent =
+        soil.organic_matter || '2.8%';
+
+      if(soil.composition){
+        document.getElementById('clay-percent').textContent =
+          soil.composition.clay ??
+          soil.composition.Clay ?? '—';
+        document.getElementById('sand-percent').textContent =
+          soil.composition.sand ??
+          soil.composition.Sand ?? '—';
+        document.getElementById('silt-percent').textContent =
+          soil.composition.silt ??
+          soil.composition.Silt ?? '—';
+      }
+
+      if(Array.isArray(soil.sources)){
+        document.getElementById('soil-sources').textContent =
+          'Sources: ' + soil.sources.join(', ');
+      }
+
+      const soilHealth = soil.soil_health || soil.soil_health_summary || {};
+      const indicatorEl = document.getElementById('soil-health-indicator');
+      if(indicatorEl){
+        let indicatorText = '—';
+        if(soilHealth && soilHealth.score !== undefined && soilHealth.score !== null){
+          const parsedScore = Number.parseFloat(soilHealth.score);
+          if(Number.isFinite(parsedScore)){
+            indicatorText = Math.round(parsedScore);
+          }
+        }
+        indicatorEl.textContent = indicatorText;
+      }
+
+      const healthStatus = soilHealth.status || soilHealth.risk_level || soilHealth.recommendation || 'Unknown';
+      const labelEl = document.getElementById('soil-health-label');
+      if(labelEl){
+        labelEl.textContent = healthStatus;
+      }
+      applySoilHealthStyles(healthStatus);
+
+      show('soil-card');
+
+
+
+      /* ---------------- WEATHER ---------------- */
+      const weather = data.weather || {};
+      document.getElementById('temperature').textContent =
+        weather.temp ?? '—';
+      document.getElementById('rainfall').textContent =
+        weather.rainfall ?? '—';
+      document.getElementById('season').textContent =
+        weather.season || '—';
+
+      if(Array.isArray(weather.sources)){
+        document.getElementById('weather-sources').textContent =
+          'Sources: ' + weather.sources.join(', ');
+      }
+
+      show('weather-card');
+
+
+
+      /* ---------------- RECOMMENDATIONS ---------------- */
+      let recs=[];
+      if(Array.isArray(data.recommendations)) recs=data.recommendations;
+      else if(data.recommendations?.crops) recs=data.recommendations.crops;
+      else if(Array.isArray(data.crops)) recs=data.crops;
+      else if(Array.isArray(data)) recs=data;
+      recs = recs.slice(0,12);
+
+
+
+      /* ---------------- TOP CROP ---------------- */
+      const whyBodyEl = document.getElementById('why-body');
+      whyBodyEl.innerHTML='';
+
+      if(recs.length>0){
+        const top = recs[0];
+        const name = top.Crop || top.crop || top.name || '-';
+
+        document.getElementById('top-crop-name').textContent = name;
+
+        const displayScore = top.score ? Math.round(top.score) : '—';
+        document.getElementById('top-score').textContent = displayScore;
+
+        const testFlagEl = document.getElementById('test-flag-display');
+        if(testFlagEl && top.test_flag === "NEW_SYSTEM_ACTIVE"){
+          testFlagEl.classList.remove('hidden');
+        }
+
+        const explanationItems = Array.isArray(top.explanation)
+          ? top.explanation
+          : (top.explanation ? String(top.explanation).split('\n') : []);
+        const short = top.short_explanation || explanationItems[0] || '';
+        document.getElementById('top-crop-sub').textContent =
+          short || `Crop: ${name}`;
+
+        whyBodyEl.innerHTML = renderExplanation(top);
+
+        const actionPlanSection = document.getElementById('action-plan-section');
+        const actionPlanList = document.getElementById('action-plan-list');
+        if (actionPlanSection && actionPlanList) {
+          actionPlanList.innerHTML = '';
+          const actionPlan = top.action_plan || [];
+          actionPlan.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            actionPlanList.appendChild(li);
+          });
+          actionPlanSection.classList.remove('hidden');
+        }
+
+        const rejectedSection = document.getElementById('rejected-crops-section');
+        const rejectedList = document.getElementById('rejected-crops-list');
+        if (rejectedSection && rejectedList) {
+          rejectedList.innerHTML = '';
+          const rejections = data.rejection_reasons || [];
+          rejections.forEach(r => {
+            const li = document.createElement('li');
+            li.innerHTML = `<span class="font-semibold">${r.crop}</span> (${Math.round(r.score)}) – ${r.reason}`;
+            rejectedList.appendChild(li);
+          });
+          rejectedSection.classList.toggle('hidden', rejections.length === 0);
+        }
+
+        show('top-recommendation');
+      }
+
+
+
+      /* ---------------- ROTATION ADVICE ---------------- */
+      const rotationList = document.getElementById('rotation-list');
+      rotationList.innerHTML='';
+
+      const rotationInsights =
+        data.rotation_insights ||
+        data.rotation ||
+        data.rotation_reasons ||
+        '';
+
+      if(pastCrop && rotationInsights){
+        let arr = [];
+
+        if(Array.isArray(rotationInsights)) arr=rotationInsights;
+        else if(typeof rotationInsights === 'string')
+          arr = rotationInsights.split(/[\n•—;-]+/).map(s=>s.trim()).filter(Boolean);
+
+        arr.forEach(r=>{
+          const li=document.createElement('li');
+          li.textContent=r;
+          rotationList.appendChild(li);
+        });
+
+        if (pastCrop && rotationList.children.length > 0) {
+          show('rotation-suggestions');
+        }
+      }
+
+
+      /* ---------------- OTHER SUITABLE CROPS ---------------- */
+      const altList = document.getElementById('alt-list');
+      altList.innerHTML='';
+
+      if(recs.length>1){
+        const alt = recs.slice(1,6);
+        alt.forEach(c=>{
+          const li=document.createElement('li');
+          li.textContent = c.Crop || c.crop || c.name || '-';
+          altList.appendChild(li);
+        });
+        document.getElementById('other-count').textContent = alt.length+" shown";
+        show('other-crops');
+      } else {
+        document.getElementById('other-count').textContent = "0 found";
+        show('other-crops');
+      }
+
+
+
+      /* ---------------- FULL TABLE ---------------- */
+      const tbody=document.getElementById('crops-table-body');
+      tbody.innerHTML='';
+
+      if(recs.length===0){
+        tbody.innerHTML = `
+          <tr><td colspan="6" class="py-3 text-muted">
+            No suitable crops found.
+          </td></tr>`;
+      }else{
+        recs.forEach(c=>{
+          const name = c.Crop || c.crop || c.name || '-';
+          const season =
+            Array.isArray(c.Season) ? c.Season.join(', ') :
+            (c.Season || c.season || '-');
+
+          const temp = c.temp_range ?? '—';
+          const rain = c.rain_range ?? '—';
+          const score = c.score ? Math.round(c.score) : '—';
+
+          const impactScore = soilImpactFromCrop(c);
+          const impact = soilImpactLabel(impactScore);
+          const impactLabel = impact.label;
+          const impactCls = `impact-label ${impact.cls}`;
+
+          const tr=document.createElement('tr');
+          tr.className="row-hover";
+
+          tr.innerHTML = `
+            <td class="py-2 pr-4">${name}</td>
+            <td class="py-2 pr-4">${season}</td>
+            <td class="py-2 pr-4"><span class="score-badge">${score}</span></td>
+            <td class="py-2 pr-4"><span class="${impactCls}">${impactLabel}</span></td>
+            <td class="py-2 pr-4">${temp}</td>
+            <td class="py-2 pr-4">${rain}</td>
+          `;
+
+          tbody.appendChild(tr);
+        });
+      }
+
+      show('recommended-collapse');
+    }
+
+
+
+    /* ------------------------------------------------------------
+       12. SIMULATION SLIDERS
+       ------------------------------------------------------------ */
+    const tempSlider = document.getElementById('tempSlider');
+    const rainSlider = document.getElementById('rainSlider');
+    const tempVal = document.getElementById('temp-val');
+    const rainVal = document.getElementById('rain-val');
+    const simLabel = document.getElementById('simLabel');
+    let simTimeout = null;
+
+    function updateSliderLabels() {
+      if(tempVal) tempVal.textContent = tempSlider.value + '°C';
+      if(rainVal) rainVal.textContent = rainSlider.value + 'mm';
+    }
+
+    async function updateSimulation() {
+      clearTimeout(simTimeout);
+      simTimeout = setTimeout(async () => {
+        const temp = parseFloat(tempSlider.value);
+        const rain = parseFloat(rainSlider.value);
+        const pastCrop = document.getElementById('past-crop').value.trim();
+        const date = document.getElementById('date').value || null;
+
+        if(!userLat && !userCity) return;
+
+        const payload = {
+          past_crop: pastCrop || null,
+          date,
+          simulate_temp: temp,
+          simulate_rain: rain
+        };
+        if(userLat && userLon){ payload.lat=userLat; payload.lon=userLon; }
+        else { payload.city=userCity; payload.state=userState; }
+
+        startLoading();
+        try{
+          const res = await fetch('/recommend',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(payload)
+          });
+          if(!res.ok) throw new Error('Simulation request failed');
+          const data = await res.json();
+          updateUI(data, pastCrop);
+          if(simLabel) simLabel.classList.remove('hidden');
+        }catch(err){
+          console.error('Simulation error:', err);
+        }finally{
+          stopLoading();
+        }
+      }, 300);
+    }
+
+    if(tempSlider){
+      tempSlider.addEventListener('input', ()=>{
+        updateSliderLabels();
+        updateSimulation();
+      });
+    }
+    if(rainSlider){
+      rainSlider.addEventListener('input', ()=>{
+        updateSliderLabels();
+        updateSimulation();
+      });
+    }
+
+
+
+    /* ------------------------------------------------------------
+       13. FORM SUBMIT → /recommend
+       ------------------------------------------------------------ */
+    document.getElementById('advisory-form').onsubmit = async e=>{
+      e.preventDefault();
+      errorEl.textContent='';
+      submitBtn.disabled=true;
+
+      // Clear everything first
+      hide('top-recommendation');
+      hide('soil-card');
+      hide('weather-card');
+      hide('other-crops');
+      hide('recommended-collapse');
+      hide('rotation-suggestions');
+      hide('simulation-card');
+      if(simLabel) simLabel.classList.add('hidden');
+
+      const pastCrop = document.getElementById('past-crop').value.trim();
+      const date = document.getElementById('date').value || null;
+
+      if(!userLat && !userCity){
+        errorEl.textContent = 'Please provide location.';
+        submitBtn.disabled=false;
+        return;
+      }
+
+      startLoading();
+
+      const payload = { past_crop: pastCrop || null, date };
+      if(userLat && userLon){ payload.lat=userLat; payload.lon=userLon; }
+      else { payload.city=userCity; payload.state=userState; }
+
+      try{
+        const res = await fetch('/recommend',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(payload)
+        });
+
+        if(!res.ok){
+          const b = await res.json().catch(()=>({error:'Server error'}));
+          throw new Error(b.error || 'Server returned an error');
+        }
+
+        const data = await res.json();
+        updateUI(data, pastCrop);
+
+        // Initialize simulation sliders from real weather data
+        const weather = data.weather || {};
+        if(tempSlider && weather.temp !== undefined){
+          tempSlider.value = weather.temp;
+        }
+        if(rainSlider && weather.rainfall !== undefined){
+          rainSlider.value = weather.rainfall;
+        }
+        updateSliderLabels();
+        show('simulation-card');
+
+      }catch(err){
+        console.error(err);
+        errorEl.textContent = err.message || "Failed to fetch recommendations.";
+
+      }finally{
+        stopLoading();
+        submitBtn.disabled=false;
+      }
+    };
+
+    setTimeout(()=>{
+      if(submitBtn.disabled) submitBtn.disabled=false;
+    },1500);
+
+  </script>
+
+</body>
+</html>
+

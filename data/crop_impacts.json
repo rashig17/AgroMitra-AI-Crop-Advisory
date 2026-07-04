@@ -1,0 +1,92 @@
+{
+  "crop_impacts": {
+    "Rice": {
+      "nutrient_depletion": { "impact": -10 },
+      "disease_risk": { "impact": -5 },
+      "physical_degradation": { "impact": -3 },
+      "allelopathy": false,
+      "irrigation_efficiency": 0.9,
+      "rainfall_sensitivity": { "impact": -4 }
+    },
+    "Wheat": {
+      "nutrient_depletion": { "impact": -6 },
+      "disease_risk": { "impact": -4 },
+      "physical_degradation": { "impact": -2 },
+      "allelopathy": false,
+      "irrigation_efficiency": 0.85,
+      "rainfall_sensitivity": { "impact": -3 }
+    },
+    "Maize": {
+      "nutrient_depletion": { "impact": -8 },
+      "disease_risk": { "impact": -3 },
+      "physical_degradation": { "impact": -2 },
+      "allelopathy": false,
+      "irrigation_efficiency": 0.8,
+      "rainfall_sensitivity": { "impact": -2 }
+    },
+    "Sugarcane": {
+      "nutrient_depletion": { "impact": -12 },
+      "disease_risk": { "impact": -7 },
+      "physical_degradation": { "impact": -4 },
+      "allelopathy": false,
+      "irrigation_efficiency": 0.95,
+      "rainfall_sensitivity": { "impact": -6 }
+    },
+    "Sugar Beet": {
+      "nutrient_depletion": { "impact": -8 },
+      "disease_risk": { "impact": -3 },
+      "physical_degradation": { "impact": -3 },
+      "allelopathy": false,
+      "irrigation_efficiency": 0.9,
+      "rainfall_sensitivity": { "impact": -3 }
+    },
+    "Potato": {
+      "nutrient_depletion": { "impact": -5 },
+      "disease_risk": { "impact": -6 },
+      "physical_degradation": { "impact": -2 },
+      "allelopathy": false,
+      "irrigation_efficiency": 0.75,
+      "rainfall_sensitivity": { "impact": -3 }
+    },
+    "Onion": {
+      "nutrient_depletion": { "impact": -4 },
+      "disease_risk": { "impact": -5 },
+      "physical_degradation": { "impact": -2 },
+      "allelopathy": false,
+      "irrigation_efficiency": 0.78,
+      "rainfall_sensitivity": { "impact": -2 }
+    },
+    "Spinach": {
+      "nutrient_depletion": { "impact": -2 },
+      "disease_risk": { "impact": -3 },
+      "physical_degradation": { "impact": -1 },
+      "allelopathy": false,
+      "irrigation_efficiency": 0.7,
+      "rainfall_sensitivity": { "impact": -1 }
+    },
+    "Guava": {
+      "nutrient_depletion": { "impact": -5 },
+      "disease_risk": { "impact": -2 },
+      "physical_degradation": { "impact": -2 },
+      "allelopathy": false,
+      "irrigation_efficiency": 0.85,
+      "rainfall_sensitivity": { "impact": -3 }
+    },
+    "Lucerne": {
+      "nutrient_depletion": { "impact": 5 },
+      "disease_risk": { "impact": -2 },
+      "physical_degradation": { "impact": -1 },
+      "allelopathy": false,
+      "irrigation_efficiency": 0.9,
+      "rainfall_sensitivity": { "impact": -2 }
+    },
+    "Napier Grass": {
+      "nutrient_depletion": { "impact": 4 },
+      "disease_risk": { "impact": -1 },
+      "physical_degradation": { "impact": -1 },
+      "allelopathy": false,
+      "irrigation_efficiency": 0.8,
+      "rainfall_sensitivity": { "impact": -1 }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-11-16T00:07:10.410669",
+  "metrics": {
+    "MAE": 5.760390814357728,
+    "RMSE": 7.1428478227813095,
+    "R2": 0.841606762302473,
+    "Accuracy": 85.56818181818183,
+    "Epochs": 1
+  },
+  "plots": {
+    "pred_vs_actual": "reports\\pred_vs_actual.png",
+    "residuals_histogram": "reports\\residuals_hist.png",
+    "distribution_comparison": "reports\\dist_comparison.png"
+  }
+}

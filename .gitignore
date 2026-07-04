@@ -1,0 +1,82 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.tox/
+*.cover
+*.coverage
+.coverage.*
+.cache
+.pytest_cache/
+
+# Pyenv
+.python-version
+
+# Virtualenv
+venv/
+ENV/
+env/
+.env/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints
+
+# Logs
+*.log
+server.log
+stderr.log
+stdout.log
+
+# Backup files
+app.py.backup
+
+# Large model artifacts (keep in working tree, do not upload to GitHub)
+models/env_model.joblib
+
+# Trash and temporary project files
+trash/
+
+
+
+# Compiled Jupyter output (if any)
+*.nbconvert.ipynb
+
+# Ignore run-time pid files
+*.pid
+
+# nohup output
+nohup.out
+
+# Ignore Jupyter notebooks (project chooses to keep notebooks out of repo)
+*.ipynb

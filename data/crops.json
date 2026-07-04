@@ -1,0 +1,1595 @@
+[
+  {
+    "Crop": "Rice",
+    "Season": [
+      "Kharif"
+    ],
+    "Temp_Min": 20,
+    "Temp_Max": 35,
+    "Rain_Min": 800,
+    "Rain_Max": 2000,
+    "Soil_Type": [
+      "Clay",
+      "Silty",
+      "Loam"
+    ],
+    "Rotation_Benefit": "Improves soil structure and moisture retention",
+    "Side_Effect": "Continuous monocropping may deplete nitrogen and increase pest risk",
+    "Benefits": [
+      "Soil structure",
+      "Moisture retention"
+    ],
+    "Counters": [
+      "Nitrogen depletion",
+      "Pest buildup"
+    ],
+    "Duration_days": 107,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 5310.0,
+    "pH_Min": 5.5,
+    "pH_Max": 7.0,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": true,
+    "Reduces_OM": false,
+    "PestProne": true,
+    "Compaction": false
+  },
+  {
+    "Crop": "Wheat",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 12,
+    "Temp_Max": 25,
+    "Rain_Min": 300,
+    "Rain_Max": 900,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Breaks pest and disease cycles, improves aeration",
+    "Side_Effect": "High fertilizer demand can reduce soil fertility if unbalanced",
+    "Benefits": [
+      "Pest control",
+      "Soil aeration"
+    ],
+    "Counters": [
+      "Fertilizer depletion",
+      "Disease buildup"
+    ],
+    "Duration_days": 103,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 4527.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": true,
+    "Heavy_Nutrient_Depletion": true,
+    "Reduces_OM": false,
+    "PestProne": true,
+    "Compaction": false
+  },
+  {
+    "Crop": "Maize",
+    "Season": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Temp_Min": 18,
+    "Temp_Max": 30,
+    "Rain_Min": 500,
+    "Rain_Max": 1000,
+    "Soil_Type": [
+      "Loam",
+      "Alluvial",
+      "Red"
+    ],
+    "Rotation_Benefit": "Restores nitrogen and adds organic matter to soil",
+    "Side_Effect": "Can cause soil erosion if crop residues are not managed",
+    "Benefits": [
+      "Restores nitrogen",
+      "Adds organic matter"
+    ],
+    "Counters": [
+      "Nitrogen depletion",
+      "Soil erosion"
+    ],
+    "Duration_days": 109,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 4907.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": true,
+    "Reduces_OM": true,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Jowar (Sorghum)",
+    "Season": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Temp_Min": 25,
+    "Temp_Max": 35,
+    "Rain_Min": 400,
+    "Rain_Max": 600,
+    "Soil_Type": [
+      "Sandy",
+      "Loam",
+      "Black (mixed)"
+    ],
+    "Rotation_Benefit": "Improves water retention and soil organic matter",
+    "Side_Effect": "Harvesting can reduce soil cover increasing erosion risk",
+    "Benefits": [
+      "Water retention",
+      "Adds organic matter"
+    ],
+    "Counters": [
+      "Soil erosion"
+    ],
+    "Duration_days": 126,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 2813.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Bajra (Pearl Millet)",
+    "Season": [
+      "Kharif"
+    ],
+    "Temp_Min": 25,
+    "Temp_Max": 40,
+    "Rain_Min": 300,
+    "Rain_Max": 600,
+    "Soil_Type": [
+      "Sandy",
+      "Loam"
+    ],
+    "Rotation_Benefit": "Enhances soil organic carbon",
+    "Side_Effect": "Excessive monoculture can reduce soil nutrients",
+    "Benefits": [
+      "Adds organic carbon"
+    ],
+    "Counters": [
+      "Soil nutrient depletion"
+    ],
+    "Duration_days": 135,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 980.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": true,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Ragi (Finger Millet)",
+    "Season": [
+      "Kharif"
+    ],
+    "Temp_Min": 20,
+    "Temp_Max": 30,
+    "Rain_Min": 400,
+    "Rain_Max": 800,
+    "Soil_Type": [
+      "Loam",
+      "Sandy"
+    ],
+    "Rotation_Benefit": "Restores soil fertility and controls pests",
+    "Side_Effect": "Needs soil moisture management to prevent nutrient leaching",
+    "Benefits": [
+      "Improves fertility",
+      "Pest control"
+    ],
+    "Counters": [
+      "Nutrient depletion",
+      "Pest buildup",
+      "Soil moisture loss"
+    ],
+    "Duration_days": 121,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 3959.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": true,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": true,
+    "PestProne": true,
+    "Compaction": false
+  },
+  {
+    "Crop": "Barley",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 12,
+    "Temp_Max": 24,
+    "Rain_Min": 200,
+    "Rain_Max": 500,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Reduces soil-borne diseases and pest incidence",
+    "Side_Effect": "May compete with soil microbes if rotated improperly",
+    "Benefits": [
+      "Disease control",
+      "Pest reduction"
+    ],
+    "Counters": [
+      "Disease buildup",
+      "Microbe competition"
+    ],
+    "Duration_days": 113,
+    "Water_Requirement_Level": "Low",
+    "Average_Yield_kg_per_ha": 2089.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": true,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": true,
+    "Compaction": false
+  },
+  {
+    "Crop": "Gram (Chickpea)",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 12,
+    "Temp_Max": 27,
+    "Rain_Min": 300,
+    "Rain_Max": 700,
+    "Soil_Type": [
+      "Loam",
+      "Clay"
+    ],
+    "Rotation_Benefit": "Fixes atmospheric nitrogen enriching soil",
+    "Side_Effect": "Can increase soil compaction if not rotated well",
+    "Benefits": [
+      "Fixes nitrogen",
+      "Enriches soil"
+    ],
+    "Counters": [
+      "Nitrogen depletion",
+      "Soil compaction"
+    ],
+    "Duration_days": 80,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 1247.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": true,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": true
+  },
+  {
+    "Crop": "Tur (Pigeon Pea)",
+    "Season": [
+      "Kharif"
+    ],
+    "Temp_Min": 20,
+    "Temp_Max": 35,
+    "Rain_Min": 400,
+    "Rain_Max": 1000,
+    "Soil_Type": [
+      "Loam",
+      "Sandy"
+    ],
+    "Rotation_Benefit": "Nitrogen fixer and improves organic matter",
+    "Side_Effect": "May deplete phosphorus if not supplemented",
+    "Benefits": [
+      "Fixes nitrogen",
+      "Adds organic matter"
+    ],
+    "Counters": [
+      "Nitrogen depletion",
+      "Phosphorus depletion"
+    ],
+    "Duration_days": 101,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 1251.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": true,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": true,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Urad (Black Gram)",
+    "Season": [
+      "Kharif"
+    ],
+    "Temp_Min": 25,
+    "Temp_MAX": 35,
+    "Rain_Min": 300,
+    "Rain_Max": 800,
+    "Soil_Type": [
+      "Loam",
+      "Sandy"
+    ],
+    "Rotation_Benefit": "Restores soil nitrogen and controls pests",
+    "Side_Effect": "Can leave soil prone to erosion without cover crops",
+    "Benefits": [
+      "Restores nitrogen",
+      "Pest control"
+    ],
+    "Counters": [
+      "Nitrogen depletion",
+      "Soil erosion"
+    ],
+    "Duration_days": 90,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 1062.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": true,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": true,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": true,
+    "Compaction": false
+  },
+  {
+    "Crop": "Moong (Green Gram)",
+    "Season": [
+      "Kharif"
+    ],
+    "Temp_Min": 25,
+    "Temp_Max": 35,
+    "Rain_Min": 300,
+    "Rain_Max": 700,
+    "Soil_Type": [
+      "Loam",
+      "Sandy"
+    ],
+    "Rotation_Benefit": "Enhances nitrogen fixation and soil fertility",
+    "Side_Effect": "May reduce soil moisture if grown continuously",
+    "Benefits": [
+      "Fixes nitrogen",
+      "Improves soil fertility"
+    ],
+    "Counters": [
+      "Nitrogen depletion",
+      "Soil moisture loss"
+    ],
+    "Duration_days": 106,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 1232.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": true,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": true,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Masoor (Red Lentil)",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 10,
+    "Temp_Max": 25,
+    "Rain_Min": 200,
+    "Rain_Max": 500,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Nitrogen fixing and breaks disease cycles",
+    "Side_Effect": "Susceptible to soil acidity buildup in certain conditions",
+    "Benefits": [
+      "Fixes nitrogen",
+      "Pest control"
+    ],
+    "Counters": [
+      "Nitrogen depletion",
+      "Disease buildup",
+      "Soil acidity"
+    ],
+    "Duration_days": 102,
+    "Water_Requirement_Level": "Low",
+    "Average_Yield_kg_per_ha": 1371.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": true,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": true,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": true,
+    "Compaction": false
+  },
+  {
+    "Crop": "Peas",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 10,
+    "Temp_Max": 24,
+    "Rain_Min": 200,
+    "Rain_Max": 500,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Improves soil structure and fertility",
+    "Side_Effect": "Can promote root pathogens if cropped continuously",
+    "Benefits": [
+      "Soil structure",
+      "Fertility"
+    ],
+    "Counters": [
+      "Root pathogens"
+    ],
+    "Duration_days": 87,
+    "Water_Requirement_Level": "Low",
+    "Average_Yield_kg_per_ha": 1147.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": true,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Sugarcane",
+    "Season": [
+      "Year-round"
+    ],
+    "Temp_Min": 20,
+    "Temp_Max": 40,
+    "Rain_Min": 1100,
+    "Rain_Max": 2500,
+    "Soil_Type": [
+      "Loam",
+      "Clay"
+    ],
+    "Rotation_Benefit": "Adds organic carbon to soil via trash mulch",
+    "Side_Effect": "Heavy nutrient extraction and soil degradation risk",
+    "Benefits": [
+      "Adds organic carbon"
+    ],
+    "Counters": [
+      "Soil degradation",
+      "Nutrient depletion"
+    ],
+    "Duration_days": 189,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 76887.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": true,
+    "Reduces_OM": true,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Cotton",
+    "Season": [
+      "Kharif"
+    ],
+    "Temp_Min": 21,
+    "Temp_Max": 30,
+    "Rain_Min": 400,
+    "Rain_Max": 1200,
+    "Soil_Type": [
+      "Loam",
+      "Sandy"
+    ],
+    "Rotation_Benefit": "Can help with pest and disease break in rotation",
+    "Side_Effect": "High pesticide use can harm soil biodiversity",
+    "Benefits": [
+      "Pest and disease break"
+    ],
+    "Counters": [
+      "Soil biodiversity loss"
+    ],
+    "Duration_days": 171,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 1615.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": true,
+    "Heavy_Nutrient_Depletion": true,
+    "Reduces_OM": true,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Sunflower",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 20,
+    "Temp_Max": 30,
+    "Rain_Min": 300,
+    "Rain_Max": 700,
+    "Soil_Type": [
+      "Loam",
+      "Sandy"
+    ],
+    "Rotation_Benefit": "Improves soil organic matter",
+    "Side_Effect": "Can reduce soil moisture leading to drought susceptibility",
+    "Benefits": [
+      "Adds organic matter"
+    ],
+    "Counters": [
+      "Soil moisture loss"
+    ],
+    "Duration_days": 180,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 2240.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": true,
+    "Reduces_OM": true,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Jute",
+    "Season": [
+      "Kharif"
+    ],
+    "Temp_Min": 20,
+    "Temp_Max": 40,
+    "Rain_Min": 1500,
+    "Rain_MAX": 2500,
+    "Soil_Type": [
+      "Alluvial",
+      "Loam"
+    ],
+    "Rotation_Benefit": "Improves soil organic matter",
+    "Side_Effect": "Heavy harvesting can reduce soil microbial diversity",
+    "Benefits": [
+      "Adds organic matter"
+    ],
+    "Counters": [
+      "Microbial diversity loss"
+    ],
+    "Duration_days": 98,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 3069.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Groundnut",
+    "Season": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Temp_Min": 20,
+    "Temp_Max": 35,
+    "Rain_Min": 500,
+    "Rain_Max": 1200,
+    "Soil_Type": [
+      "Sandy",
+      "Loam"
+    ],
+    "Rotation_Benefit": "Fixes atmospheric nitrogen and adds organic matter",
+    "Side_Effect": "Requires careful nutrient management to avoid depletion",
+    "Benefits": [
+      "Fixes nitrogen",
+      "Adds organic matter"
+    ],
+    "Counters": [
+      "Nutrient depletion"
+    ],
+    "Duration_days": 187,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 1209.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": true,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Sesamum (Sesame)",
+    "Season": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Temp_Min": 25,
+    "Temp_Max": 35,
+    "Rain_Min": 300,
+    "Rain_Max": 700,
+    "Soil_Type": [
+      "Loam",
+      "Sandy"
+    ],
+    "Rotation_Benefit": "Enhances soil fertility and breaks pest cycles",
+    "Side_Effect": "Sensitive to waterlogging leading to root diseases",
+    "Benefits": [
+      "Enhances fertility",
+      "Pest break"
+    ],
+    "Counters": [
+      "Waterlogging",
+      "Root diseases"
+    ],
+    "Duration_days": 186,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 1673.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": true,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Tea",
+    "Season": [
+      "Year-round"
+    ],
+    "Temp_Min": 18,
+    "Temp_Max": 30,
+    "Rain_Min": 1500,
+    "Rain_Max": 3000,
+    "Soil_Type": [
+      "Acidic",
+      "Loam"
+    ],
+    "Rotation_Benefit": "Enhances organic matter and soil microbe activity",
+    "Side_Effect": "Continuous cropping may lead to soil acidification",
+    "Benefits": [
+      "Adds organic matter",
+      "Microbe activity"
+    ],
+    "Counters": [
+      "Soil acidification"
+    ],
+    "Duration_days": 318,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 2198.0,
+    "pH_Min": 4.5,
+    "pH_Max": 6.0,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Coffee",
+    "Season": [
+      "Year-round"
+    ],
+    "Temp_Min": 16,
+    "Temp_Max": 28,
+    "Rain_Min": 1500,
+    "Rain_Max": 2500,
+    "Soil_Type": [
+      "Well-drained Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Adds organic mulch improving soil fertility",
+    "Side_Effect": "Requires shade trees to prevent soil erosion",
+    "Benefits": [
+      "Adds organic mulch",
+      "Improves fertility"
+    ],
+    "Counters": [
+      "Soil erosion"
+    ],
+    "Duration_days": 416,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 2562.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": true,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Rubber",
+    "Season": [
+      "Year-round"
+    ],
+    "Temp_Min": 20,
+    "Temp_Max": 34,
+    "Rain_Min": 1500,
+    "Rain_Max": 4000,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Adds organic carbon and enhances soil microbial activity",
+    "Side_Effect": "Soil acidification if latex tapping residues are not managed",
+    "Benefits": [
+      "Adds organic carbon",
+      "Enhances microbial activity"
+    ],
+    "Counters": [
+      "Soil acidification"
+    ],
+    "Duration_days": 396,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 2462.0,
+    "pH_Min": 4.5,
+    "pH_Max": 6.0,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Coconut",
+    "Season": [
+      "Year-round"
+    ],
+    "Temp_Min": 24,
+    "Temp_Max": 32,
+    "Rain_Min": 1000,
+    "Rain_Max": 3000,
+    "Soil_Type": [
+      "Sandy",
+      "Loam"
+    ],
+    "Rotation_Benefit": "Improves soil moisture and nutrient recycling",
+    "Side_Effect": "Heavy nutrient extraction, especially potassium",
+    "Benefits": [
+      "Improves soil moisture",
+      "Nutrient recycling"
+    ],
+    "Counters": [
+      "Nutrient depletion"
+    ],
+    "Duration_days": 445,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 2414.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": true,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Banana",
+    "Season": [
+      "Year-round"
+    ],
+    "Temp_Min": 15,
+    "Temp_Max": 35,
+    "Rain_Min": 1200,
+    "Rain_Max": 2500,
+    "Soil_Type": [
+      "Loam",
+      "Alluvial"
+    ],
+    "Rotation_Benefit": "Increases soil organic carbon through leaf litter",
+    "Side_Effect": "Heavy nutrient feeder if not managed properly",
+    "Benefits": [
+      "Adds organic carbon"
+    ],
+    "Counters": [
+      "Nutrient depletion"
+    ],
+    "Duration_days": 323,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 29164.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": true,
+    "Reduces_OM": true,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Mango",
+    "Season": [
+      "Summer"
+    ],
+    "Temp_Min": 24,
+    "Temp_MAX": 35,
+    "Rain_Min": 750,
+    "Rain_Max": 2000,
+    "Soil_Type": [
+      "Well-drained Loam",
+      "Lateritic"
+    ],
+    "Rotation_Benefit": "Can be intercropped improving soil coverage",
+    "Side_Effect": "Sensitive to waterlogging causing root damage",
+    "Benefits": [
+      "Improves soil coverage"
+    ],
+    "Counters": [
+      "Waterlogging"
+    ],
+    "Duration_days": 418,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 35383.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Guava",
+    "Season": [
+      "Year-round"
+    ],
+    "Temp_Min": 20,
+    "Temp_Max": 30,
+    "Rain_Min": 600,
+    "Rain_Max": 1500,
+    "Soil_Type": [
+      "Loam",
+      "Sandy Loam"
+    ],
+    "Rotation_Benefit": "Good for soil coverage and organic matter input",
+    "Side_Effect": "Prone to soil compaction if irrigated excessively",
+    "Benefits": [
+      "Soil coverage",
+      "Adds organic matter"
+    ],
+    "Counters": [
+      "Soil compaction"
+    ],
+    "Duration_days": 361,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 32680.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": true
+  },
+  {
+    "Crop": "Papaya",
+    "Season": [
+      "Year-round"
+    ],
+    "Temp_Min": 21,
+    "Temp_Max": 33,
+    "Rain_Min": 1000,
+    "Rain_Max": 2000,
+    "Soil_Type": [
+      "Loam",
+      "Sandy"
+    ],
+    "Rotation_Benefit": "Adds organic matter and soil aeration",
+    "Side_Effect": "Heavy feeder, can deplete nutrients fast",
+    "Benefits": [
+      "Adds organic matter",
+      "Improves aeration"
+    ],
+    "Counters": [
+      "Nutrient depletion"
+    ],
+    "Duration_days": 379,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 25494.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": true,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Potato",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 15,
+    "Temp_Max": 25,
+    "Rain_Min": 300,
+    "Rain_Max": 800,
+    "Soil_Type": [
+      "Loam",
+      "Sandy Loam"
+    ],
+    "Rotation_Benefit": "Breaks nematode cycles",
+    "Side_Effect": "Heavy feeder, depletes soil nutrients",
+    "Benefits": [
+      "Breaks nematode cycles"
+    ],
+    "Counters": [
+      "Nutrient depletion"
+    ],
+    "Duration_days": 96,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 21999.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": true,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Onion",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 12,
+    "Temp_Max": 24,
+    "Rain_Min": 300,
+    "Rain_Max": 800,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Improves soil aeration",
+    "Side_Effect": "Susceptible to soil-borne diseases if rotated poorly",
+    "Benefits": [
+      "Improves aeration"
+    ],
+    "Counters": [
+      "Soil-borne diseases"
+    ],
+    "Duration_days": 125,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 24325.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": true,
+    "Compaction": false
+  },
+  {
+    "Crop": "Carrot",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 16,
+    "Temp_Max": 21,
+    "Rain_Min": 300,
+    "Rain_Max": 700,
+    "Soil_Type": [
+      "Loam",
+      "Sandy Loam"
+    ],
+    "Rotation_Benefit": "Improves soil tilth",
+    "Side_Effect": "Can compact soil if over-cultivated",
+    "Benefits": [
+      "Improves soil tilth"
+    ],
+    "Counters": [
+      "Soil compaction"
+    ],
+    "Duration_days": 128,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 26885.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": true,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": true
+  },
+  {
+    "Crop": "Cauliflower",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 15,
+    "Temp_Max": 20,
+    "Rain_Min": 200,
+    "Rain_Max": 600,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Good for pest break in rotation",
+    "Side_Effect": "Sensitive to soil-borne diseases in continuous cropping",
+    "Benefits": [
+      "Pest break"
+    ],
+    "Counters": [
+      "Soil-borne diseases"
+    ],
+    "Duration_days": 102,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 3812.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": true,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Turmeric",
+    "Season": [
+      "Kharif"
+    ],
+    "Temp_Min": 20,
+    "Temp_Max": 35,
+    "Rain_Min": 1500,
+    "Rain_Max": 3000,
+    "Soil_Type": [
+      "Loam",
+      "Sandy"
+    ],
+    "Rotation_Benefit": "Adds organic matter and suppresses soil-borne pathogens",
+    "Side_Effect": "Can deplete potassium if grown continuously",
+    "Benefits": [
+      "Adds organic matter",
+      "Suppresses pathogens"
+    ],
+    "Counters": [
+      "Potassium depletion"
+    ],
+    "Duration_days": 94,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 3294.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": true,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Dry Chillies",
+    "Season": [
+      "Kharif"
+    ],
+    "Temp_Min": 25,
+    "Temp_Max": 30,
+    "Rain_Min": 500,
+    "Rain_Max": 1200,
+    "Soil_Type": [
+      "Sandy Loam",
+      "Loam"
+    ],
+    "Rotation_Benefit": "Suppresses some soil pathogens",
+    "Side_Effect": "Susceptible to nutrient deficiencies in poor soils",
+    "Benefits": [
+      "Suppresses pathogens"
+    ],
+    "Counters": [
+      "Nutrient deficiencies"
+    ],
+    "Duration_days": 112,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 3950.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Coriander",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 17,
+    "Temp_Max": 27,
+    "Rain_Min": 200,
+    "Rain_Max": 600,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Improves soil fertility",
+    "Side_Effect": "Requires good drainage to avoid root rot",
+    "Benefits": [
+      "Improves fertility"
+    ],
+    "Counters": [
+      "Poor drainage",
+      "Root rot"
+    ],
+    "Duration_days": 90,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 3593.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Barseem",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 10,
+    "Temp_Max": 22,
+    "Rain_Min": 400,
+    "Rain_Max": 1000,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Fixes nitrogen and enriches the soil",
+    "Side_Effect": "Can cause soil acidity if not managed",
+    "Benefits": [
+      "Fixes nitrogen",
+      "Enriches soil"
+    ],
+    "Counters": [
+      "Soil acidity"
+    ],
+    "Duration_days": 114,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 3942.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": true,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Napier Grass",
+    "Season": [
+      "Year-round"
+    ],
+    "Temp_Min": 20,
+    "Temp_Max": 35,
+    "Rain_Min": 600,
+    "Rain_Max": 1500,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Improves soil organic matter and nitrogen content",
+    "Side_Effect": "Can be invasive if not managed well",
+    "Benefits": [
+      "Adds organic matter",
+      "Adds nitrogen"
+    ],
+    "Counters": [
+      "Invasiveness"
+    ],
+    "Duration_days": 111,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 3311.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": true,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Lucerne",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 15,
+    "Temp_Max": 30,
+    "Rain_Min": 500,
+    "Rain_Max": 1200,
+    "Soil_Type": [
+      "Loam",
+      "Sandy Loam"
+    ],
+    "Rotation_Benefit": "Fixes nitrogen and enriches soil",
+    "Side_Effect": "Requires good drainage, sensitive to waterlogging",
+    "Benefits": [
+      "Fixes nitrogen",
+      "Enriches soil"
+    ],
+    "Counters": [
+      "Waterlogging"
+    ],
+    "Duration_days": 120,
+    "Water_Requirement_Level": "High",
+    "Average_Yield_kg_per_ha": 2845.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": true,
+    "Improves_OM": true,
+    "Deep_Roots": true,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Mustard",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 10,
+    "Temp_Max": 25,
+    "Rain_Min": 250,
+    "Rain_Max": 500,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Good for breaking disease cycles and improving soil structure",
+    "Side_Effect": "Can lead to nutrient depletion if continuously cropped",
+    "Benefits": [
+      "Pest and disease break",
+      "Improves soil structure"
+    ],
+    "Counters": [
+      "Nutrient depletion"
+    ],
+    "Duration_days": 185,
+    "Water_Requirement_Level": "Low",
+    "Average_Yield_kg_per_ha": 1538.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": true,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Rajma (Kidney Beans)",
+    "Season": [
+      "Kharif"
+    ],
+    "Temp_Min": 18,
+    "Temp_Max": 30,
+    "Rain_Min": 400,
+    "Rain_Max": 700,
+    "Soil_Type": [
+      "Loam",
+      "Sandy Loam"
+    ],
+    "Rotation_Benefit": "Fixes nitrogen and improves soil fertility",
+    "Side_Effect": "Sensitive to waterlogging, which can affect yield and soil health",
+    "Benefits": [
+      "Fixes nitrogen",
+      "Improves fertility"
+    ],
+    "Counters": [
+      "Waterlogging"
+    ],
+    "Duration_days": 111,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 3010.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": true,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Sugar Beet",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 10,
+    "Temp_Max": 22,
+    "Rain_Min": 300,
+    "Rain_Max": 600,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Improves organic matter content and soil structure",
+    "Side_Effect": "Heavy nutrient user which can lead to depletion if unmanaged",
+    "Benefits": [
+      "Adds organic matter",
+      "Improves soil structure"
+    ],
+    "Counters": [
+      "Nutrient depletion"
+    ],
+    "Duration_days": 153,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 67373.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": true,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": true,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Cabbage",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 15,
+    "Temp_Max": 22,
+    "Rain_Min": 300,
+    "Rain_Max": 700,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Improves soil structure and nutrient cycling",
+    "Side_Effect": "Susceptible to rot in poorly drained soils",
+    "Benefits": [
+      "Improves soil structure",
+      "Nutrient cycling"
+    ],
+    "Counters": [
+      "Poor drainage",
+      "Rot"
+    ],
+    "Duration_days": 110,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 22782.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Turnip",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 10,
+    "Temp_Max": 22,
+    "Rain_Min": 300,
+    "Rain_Max": 700,
+    "Soil_Type": [
+      "Loam",
+      "Clay Loam"
+    ],
+    "Rotation_Benefit": "Helps improve soil aeration",
+    "Side_Effect": "Root crops can cause soil compaction if not managed",
+    "Benefits": [
+      "Improves soil aeration"
+    ],
+    "Counters": [
+      "Soil compaction"
+    ],
+    "Duration_days": 125,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 24412.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": true,
+    "Improves_OM": false,
+    "Deep_Roots": true,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": true
+  },
+  {
+    "Crop": "Radish",
+    "Season": [
+      "Rabi"
+    ],
+    "Temp_Min": 10,
+    "Temp_Max": 22,
+    "Rain_Min": 250,
+    "Rain_Max": 600,
+    "Soil_Type": [
+      "Loam",
+      "Sandy Loam"
+    ],
+    "Rotation_Benefit": "Prevents build-up of nematodes and pests",
+    "Side_Effect": "Sensitive to waterlogging and soil diseases",
+    "Benefits": [
+      "Pest and nematode control"
+    ],
+    "Counters": [
+      "Waterlogging",
+      "Soil diseases"
+    ],
+    "Duration_days": 123,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 26802.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": false,
+    "Deep_Roots": true,
+    "PestBreak": true,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  },
+  {
+    "Crop": "Spinach",
+    "Season": [
+      "Year-round"
+    ],
+    "Temp_Min": 15,
+    "Temp_Max": 28,
+    "Rain_Min": 300,
+    "Rain_Max": 700,
+    "Soil_Type": [
+      "Loam",
+      "Sandy Loam"
+    ],
+    "Rotation_Benefit": "Enhances organic content and soil texture",
+    "Side_Effect": "Can exhaust nitrogen quickly if grown continuously",
+    "Benefits": [
+      "Enhances organic content",
+      "Improves soil texture"
+    ],
+    "Counters": [
+      "Nitrogen depletion"
+    ],
+    "Duration_days": 107,
+    "Water_Requirement_Level": "Medium",
+    "Average_Yield_kg_per_ha": 20155.0,
+    "pH_Min": 6.0,
+    "pH_Max": 7.5,
+    "Legume": false,
+    "Improves_OM": true,
+    "Deep_Roots": false,
+    "PestBreak": false,
+    "Heavy_Nutrient_Depletion": false,
+    "Reduces_OM": false,
+    "PestProne": false,
+    "Compaction": false
+  }
+]
